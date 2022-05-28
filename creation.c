@@ -6,7 +6,7 @@ struct Node
     int data;           // variable 'data' will store the data elements.
     struct Node *next;      // pointer 'next' will store the address of its next node,
                             // that will pointing onto the next node.
-}*first = NULL;         // first node intialized as NULL.
+}*first = NULL;         // declared pointer 'first' and first node intialized as NULL.
 
 
 // function to create a Linked List.
