@@ -1,12 +1,25 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
+/*
+    A linked list consists of various nodes, and each node contains two things: 
+    One is the data, and the other is the pointer, which will point to the next node.
+
+    | start | ---> | data|next | ---> | data|next | ---> | data|NULL |
+    start            first node         second node         last node
+    
+*/
+
+// we use structures in C programming to create a Linked List,
+// it is a user-defined data type that enables us to store the collection of different data types.
+
 struct Node
 {
     int data;           // variable 'data' will store the data elements.
-    struct Node *next;      // pointer 'next' will store the address of its next node,
-                            // that will pointing onto the next node.
-}*first = NULL;         // declared pointer 'first' and first node intialized as NULL.
+    struct Node *next;      // pointer 'next' is of a 'structure Node' data type and 
+                            // will hold the address of its next node, that will pointing onto the next node.
+}*first = NULL;         // declared pointer 'first' and first node of Linked List is intialized as NULL.
 
 
 // function to create a Linked List.
@@ -19,7 +32,7 @@ void create(int arr[], int n)
     
 
     // dynamically allocationg the memory for the first node inside Heap.
-    
+
     first = (struct Node *)malloc(sizeof(struct Node));
     first -> data = arr[0];         // assigned first elemnt of Array in first node of Linked List.
     first -> next = NULL;       // linked list with a single node.
@@ -60,13 +73,67 @@ void Display(struct Node *newnode)
 }
 
 
+// Recursive function for traversing the Linked List.
+/*
+    lets assume a Linked List example for better understanding of Recursive funtion
+
+    | 100 | ---> | 4|120 | ---> | 6|150 | ---> | 9|200 | ---> | 12|260 | ---> | 42|300 | ---> | 16|NULL | 
+
+    execution:
+
+        newnode(first) = 100 != NULL            (enter the loop)
+        
+        Step-1: print: newnode's data that is = 4
+                
+                [now, function 'recDisplay' will call itself]
+
+        Step-2: call: newnode's next that is = 120 
+                
+                [now, it will repeat step-1 and step-2 until newnode's next becomes NULL]
+
+        Step-1:    print =  6
+        Step-2:    call =   150
+
+        Step-1:    print =  9
+        Step-2:    call =   200
+
+        Step-1:    print =  12
+        Step-2:    call =   260
+
+        Step-1:    print =  42
+        Step-2:    call =   300
+
+        Step-1:    print =  16
+        Step-2:    call =   0
+
+        newnode = 0(NULL)
+                [exit the loop and the call will get terminated]
+*/
+
+void recDisplay(struct Node *newnode)
+{
+    if (newnode != NULL) 
+    {
+        printf("%d\t", newnode -> data);                // Step-1   print the data
+        recDisplay(newnode -> next);                    // Step-2   call the next node's address
+    }
+    
+}
+
+
+// main function
+
 int main()
 {
     int arr[] = {4, 6, 9, 12, 42, 16};          // declared and intialized an Array of size '6' 
 
     create(arr, 6);         // calling the create function and passing the Array along with its size as a parameter.
 
-    Display(first);         // calling the Display function and passing the 'first node' as a parameter.
+    Display(first);         // calling the Display function and passing the 'first' as a pointer,
+                            // the pointer 'first' will become the pointer 'newnode' in Display function.
+    printf("\n");
+
+    recDisplay(first);      // calling the recursive function and passing the 'first' as a pointer.
 
     return 0;
 }
