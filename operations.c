@@ -100,7 +100,7 @@ void deleteFromBeginning()
     temp = head;
     head = head->next;
     free(temp);
-    printf("\nFirst node deleted successfully.\n");
+    printf("First node deleted successfully.\n");
 }
 
 void deleteFromEnd()
@@ -122,13 +122,13 @@ void deleteFromEnd()
         prevnode->next = 0;
     }
     free(temp);
-    printf("\nLast node deleted successfully.\n");
+    printf("Last node deleted successfully.\n");
 }
 
 void deleteFromSpecificPosition()
 {
     printf("\n----------Deletion At Specific Position----------\n");
-    printf("Enter the position where you want to delete: ");
+    printf("Enter the position you want to delete: ");
     scanf("%d", &pos);
 
     if (pos > count)
@@ -144,9 +144,10 @@ void deleteFromSpecificPosition()
             temp = temp->next;
             i++;
         }
-        newnode = temp->next;
-        temp->next = newnode->next;
+        nextnode = temp->next;
+        temp->next = nextnode->next;
         free(nextnode);
+        printf("Node %d deleted successfully.\n", pos);
     }
 }
 
@@ -174,7 +175,7 @@ int main()
             temp->next = newnode;
             temp = newnode;
         }
-        printf("\nDo you want to enter more Nodes?\n"
+        printf("\nDo you want to enter more Nodes? "
                "If Yes press 1, else press 0:  ");
         scanf("%d", &choice);
     }
@@ -185,16 +186,19 @@ int main()
     
     insertAtBeginning();
     insertAtEnd();
+    Display(head);
     countNodes();
     insertAtSpecificPosition();
+    
     Display(head);
+    countNodes();
     
     deleteFromBeginning();
-    Display(head);
     deleteFromEnd();
     Display(head);
     countNodes();
     deleteFromSpecificPosition();
+    
     Display(head);
 
     return 0;
