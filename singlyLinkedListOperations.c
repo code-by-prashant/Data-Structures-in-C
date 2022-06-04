@@ -333,7 +333,7 @@ int main()
 
     printf("\nCount of nodes is %d\n", countNodes(head));
 
-    insertAtSpecificPosition(); // ??? node is inserting after the entered pos
+    insertAtSpecificPosition(); // ??? new node is being inserting after the position entered
 
     Display(head);
 
@@ -345,7 +345,7 @@ int main()
 
     printf("\nCount of nodes is %d\n", countNodes(head));
 
-    deleteFromSpecificPosition(); // ??? sometimes misbahave sometimes not, fix for pos=1
+    deleteFromSpecificPosition(); // ??? only fix for pos=1 checked for rest positions.
     Display(head);
 
     sortList();
