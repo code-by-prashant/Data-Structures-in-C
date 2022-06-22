@@ -81,7 +81,7 @@ void insertAtSpecificPosition()
     else
     {
         temp = head;
-        while (i < pos)
+        while (i < pos-1)
         {
             temp = temp->next;
             i++;
@@ -333,7 +333,7 @@ int main()
 
     printf("\nCount of nodes is %d\n", countNodes(head));
 
-    insertAtSpecificPosition(); // ??? new node is being inserting after the position entered
+    insertAtSpecificPosition(); 
 
     Display(head);
 
